@@ -271,11 +271,50 @@ class Util {
     }
 
 
+
+    static isEveryDayDouble(){
+        var day = moment().date();
+        var month = moment().month();
+        return month == 1 && day <= 22 && day >= 7;
+    }
+
+    static formatActivityDate = function(beginTime, endTime){
+        return Util.formatDate(beginTime) + '--' + Util.formatDate(endTime);
+    };
+
+    static formatActivityDateThree = function(endTime){
+        return '截止日期:' + Util.formatDate(endTime);
+    };
+
+    static formatDate = function(time){
+        var str = "";
+        if (!!time){
+            var timeDate = new Date(time);
+            str += (timeDate.getMonth() + 1) + "月";
+            str += timeDate.getDate() + "日";
+        }
+        return str;
+    };
+
+    static isBetweenTime(beginTime,endTime){
+        var serverTime = gm.dataManage.serverTimeWX;
+        if (!!beginTime){
+            // 还未开始;,
+            if (serverTime < new Date(beginTime).getTime()) return false;
+        }
+        if (!!endTime){
+            // 已结束;
+            if (serverTime >= new Date(endTime).getTime()) return false;
+        }
+        return true;
+    }
+
     static isDouble11() {
         //var d = new Date();
         //return d.getDate() == 22 && d.getMonth() == 1;
         return ActivityUtil.hasActivityOpened(ActivityType.FIRST_RECHARGE_DOUBLE_DIAMOND);
     }
+
 
     static isChristmas() {
         //return true;
@@ -284,6 +323,7 @@ class Util {
         return month == 0 && day < 25 && day >= 18;
     }
 
+/*
     static isOpenLifeCardActivity() {
         //var day = moment().date();
         //var month = moment().month() + 1;
@@ -324,44 +364,6 @@ class Util {
         return ActivityUtil.hasActivityOpened(ActivityType.WORTHBOX);
     }
 
-    static isEveryDayDouble(){
-        var day = moment().date();
-        var month = moment().month();
-        return month == 1 && day <= 22 && day >= 7;
-    }
-
-    static formatActivityDate = function(beginTime, endTime){
-        return Util.formatDate(beginTime) + '--' + Util.formatDate(endTime);
-    };
-
-    static formatActivityDateThree = function(endTime){
-        return '截止日期:' + Util.formatDate(endTime);
-    };
-
-    static formatDate = function(time){
-        var str = "";
-        if (!!time){
-            var timeDate = new Date(time);
-            str += (timeDate.getMonth() + 1) + "月";
-            str += timeDate.getDate() + "日";
-        }
-        return str;
-    };
-
-    static isBetweenTime(beginTime,endTime){
-        var serverTime = gm.dataManage.serverTimeWX;
-        if (!!beginTime){
-            // 还未开始;,
-            if (serverTime < new Date(beginTime).getTime()) return false;
-        }
-        if (!!endTime){
-            // 已结束;
-            if (serverTime >= new Date(endTime).getTime()) return false;
-        }
-        return true;
-    }
-
-
     static isOpenCat(){
        // var day = moment().date();
         //var month = moment().month();
@@ -400,6 +402,8 @@ class Util {
         return ActivityUtil.hasActivityOpened(ActivityType.RECHARGE_GIFT);
        // return false;
     }
+
+*/    
 
     static getImageUrl(name,image = "png") {
         var prefix = "";
