@@ -77,14 +77,14 @@ class ActivityLayer extends egret.gui.SkinnableComponent {
 	}
 
 	onInitLifeCardName() {
-		if(Util.isOpenLifeCardActivity()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.LIFE_CARD)){
 			this.arrName.push("lifecard");
 			this.arrBarName.push("终身卡");
 		}
 	}
 
 	onInitMonthName() {
-		if(Util.isOpenMonth()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.MONTH_CARD)){
 			this.arrName.push("month");
 			this.arrBarName.push("月卡促销");
 		}
@@ -100,7 +100,7 @@ class ActivityLayer extends egret.gui.SkinnableComponent {
 				return;
 			}
 		} else {
-			if(!Util.isOpenThreeActivity()){ //未参与过活动，活动关闭
+			if(!ActivityUtil.hasActivityOpened(ActivityType.FIRST_RECHARGE_GIFT)){ //未参与过活动，活动关闭
 				return;
 			}
 		}
@@ -115,7 +115,7 @@ class ActivityLayer extends egret.gui.SkinnableComponent {
 	}
 
 	onInitEggName() {
-		if(Util.isOpenEggActivity()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.SMASHING_GOLDEN_EGGS)){
 			console.log("egg activity opened.");
 			this.arrName.push("egg");
 			this.arrBarName.push("砸金蛋");
@@ -126,35 +126,35 @@ class ActivityLayer extends egret.gui.SkinnableComponent {
 	}
 
 	onInitCatName(){
-		if(Util.isOpenCat()){//Util.isChristmas()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.CAT_GO)){//Util.isChristmas()){
 			this.arrName.push("cat");
 			this.arrBarName.push("招财猫");
 		}
 	}
 
 	onInitAccuName(){
-		if(Util.isOpenAccu()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.RECHARGE_GIFT)){
 			this.arrName.push("accu");
 			this.arrBarName.push("累充福利");
 		}
 	}
 
 	onInitBlackName(){
-		if(Util.isOpenBlack()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.BLACK_MARKET)){
 			this.arrName.push("black");
 			this.arrBarName.push("超值限购");
 		}
 	}
 
 	onInitCostDiamondName(){
-		if(Util.isOpenCostDiamond()){
+		if(ActivityUtil.hasActivityOpened(ActivityType.TOTAL_DIAMOND_CONSUMPTION)){
 			this.arrName.push("costdiamond");
 			this.arrBarName.push("钻石返利");
 		}
 	}
 
 	onInitGrowthFund() {
-		if(Util.isOpenGrowthActivity())
+		if(ActivityUtil.hasActivityOpened(ActivityType.GROWTH_FUND))
 		{
 			this.arrName.push("growth_fund");
 			this.arrBarName.push("成长基金");
@@ -162,7 +162,7 @@ class ActivityLayer extends egret.gui.SkinnableComponent {
 	}
 
 	onInitWorthBox() {
-		if(Util.isOpenWorthBoxActivity())
+		if(ActivityUtil.hasActivityOpened(ActivityType.WORTHBOX))
 		{
 			this.arrName.push("worthBox");
 			this.arrBarName.push("超值宝箱");
